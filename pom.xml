@@ -31,8 +31,22 @@
             <artifactId>logback-classic</artifactId>
             <version>1.2.3</version>
         </dependency>
-    </dependencies>
 
+
+        <!-- Test dependencies -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>5.3.1</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>5.3.1</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
 
     <build>
         <plugins>
@@ -43,6 +57,30 @@
                 <configuration>
                     <release>10</release>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.1.0</version>
+                <executions>
+                    <execution>
+                        <id>Copy Test Resources</id>
+                        <phase>process-test-resources</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <includeEmptyDirs>true</includeEmptyDirs>
+                            <resources>
+                                <resource>
+                                    <directory>${project.basedir}/src/test/resources/ev3</directory>
+                                    <filtering>false</filtering>
+                                </resource>
+                            </resources>
+                            <outputDirectory>${project.build.directory}/ev3</outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -68,6 +106,16 @@
                         </configuration>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.22.0</version>
+                <configuration>
+                    <systemPropertyVariables>
+                        <EV3DEV_TESTING_KEY>${project.build.directory}/ev3</EV3DEV_TESTING_KEY>
+                    </systemPropertyVariables>
+                </configuration>
             </plugin>
         </plugins>
     </build>

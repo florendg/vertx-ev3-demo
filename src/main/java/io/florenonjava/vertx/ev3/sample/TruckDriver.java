@@ -82,8 +82,8 @@ class DistanceVerticle extends AbstractVerticle {
 }
 
 /**
- * Read the voltage of the battery. Can be used to stop the truck
- * when the battery is dying.
+ * Read the voltage of the lego-ev3-battery. Can be used to stop the truck
+ * when the lego-ev3-battery is dying.
  */
 class BatteryStatusVerticle extends AbstractVerticle {
 
