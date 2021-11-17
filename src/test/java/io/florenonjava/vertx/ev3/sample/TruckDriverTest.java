@@ -7,7 +7,6 @@ import ev3dev.hardware.EV3DevPlatforms;
 import ev3dev.sensors.ev3.EV3IRSensor;
 import lejos.hardware.port.SensorPort;
 import lejos.hardware.sensor.SensorMode;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Disabled;
